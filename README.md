@@ -93,6 +93,7 @@ Se exponen los siguientes Endpoints :
 ## Corriendo la api
 
 ```bash
+$ composer install
 $ php artisan serve
 
 ```
