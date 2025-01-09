@@ -1,11 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
 # Products API
 
@@ -21,9 +15,9 @@ Se exponen los siguientes Endpoints :
 **PRODUCTOS**
 
 
-* GET **http://localhost:8000/api/products**: Obtiene todos los productos almacenados en base de datos.
+* GET **http://localhost:8000/api/products/**: Obtiene todos los productos almacenados en base de datos.
 
-* GET **http://localhost:8000/api/products/id**: Obtiene el producto almacenado en base de datos que corresponda con el id enviado, si no existe, regresa un 404.
+* GET **http://localhost:8000/api/products/id/**: Obtiene el producto almacenado en base de datos que corresponda con el id enviado, si no existe, regresa un 404.
 
 * POST **http://localhost:8000/api/products/**: Crea un producto con el siguiente body; debe existir una moneda registrada, de lo contrario regresa un error
 ```
@@ -36,7 +30,7 @@ Se exponen los siguientes Endpoints :
     "currency_id": 1
 }
 ```
-* PUT **http://localhost:8000/api/products/id**: Modifica el producto almacenado en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
+* PUT **http://localhost:8000/api/products/id/**: Modifica el producto almacenado en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
 
 ```
 {
@@ -48,13 +42,13 @@ Se exponen los siguientes Endpoints :
     "currency_id": 1
 }
 ```
-* DELETE **http://localhost:8000/api/prodcuts/id**: Elimina el saludo almacenado en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
+* DELETE **http://localhost:8000/api/products/id/**: Elimina el saludo almacenado en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
 
 
-* GET **http://localhost:8000/api/products/id/prices**: Obtiene la lista de los precios que ha tenido un producto.
+* GET **http://localhost:8000/api/products/id/prices/**: Obtiene la lista de los precios que ha tenido un producto.
 
 
-* POST **http://localhost:8000/api/products/id/prices**: Crea un nuevo precio para el producto solicitado con el siguiente body; debe existir el producto y la moneda ya registrados, de lo contrario regresa un error
+* POST **http://localhost:8000/api/products/id/prices/**: Crea un nuevo precio para el producto solicitado con el siguiente body; debe existir el producto y la moneda ya registrados, de lo contrario regresa un error
 ```
 {
     "id": 2,
@@ -66,9 +60,9 @@ Se exponen los siguientes Endpoints :
 
 **MONEDAS**
 
-* GET **http://localhost:8000/api/currency**: Obtiene todas las monedas almacenadas en base de datos.
+* GET **http://localhost:8000/api/currency/**: Obtiene todas las monedas almacenadas en base de datos.
 
-* GET **http://localhost:8000/api/currency/id**: Obtiene la moneda almacenada en base de datos que corresponda con el id enviado, si no existe, regresa un 404
+* GET **http://localhost:8000/api/currency/id/**: Obtiene la moneda almacenada en base de datos que corresponda con el id enviado, si no existe, regresa un 404
 
 * POST **http://localhost:8000/api/currency/**: Crea una moneda con el siguiente body:
 ```
