@@ -29,11 +29,10 @@ class pricesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
             'price' => 'required',
-            'product_id' => 'required',
             'currency_id' => 'required',
         ]);
 
@@ -51,7 +50,7 @@ class pricesController extends Controller
             return response()->json(['message' => "El currency_id no corresponde a ninguna moneda."], 400);
         }
 
-        $product = Product::find($request->product_id);
+        $product = Product::find($id);
         if (!$product) {
             return response()->json(['message' => "El product_id no corresponde a ningun producto del stock."], 400);
         }
@@ -59,7 +58,7 @@ class pricesController extends Controller
         // Create price register
         $price = Price::create([
             'price' => $request->price,
-            'product_id' => $request->product_id,
+            'product_id' => $id,
             'currency_id' => $request->currency_id
         ]);
 

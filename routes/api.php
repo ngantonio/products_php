@@ -16,7 +16,6 @@ Route::delete('/products/{id}', [productsController::class, 'destroy']);
 
 /** Prices Routes */
 Route::get('/products/{id}/prices', [pricesController::class, 'show']);
-
 Route::post('/products/{id}/prices', [pricesController::class, 'store']);
 
 

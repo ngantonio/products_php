@@ -7,60 +7,98 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Products API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Descripción:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Se presenta una sencilla API-REST construida bajo *Laravel*, utilizando como base de datos local a *SQLite*.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Se ha construido con un enfoque sencillo y exponiendo un C.R.U.D para los modelos "Product", "Prices", y "Currency".
 
-## Learning Laravel
+Se exponen los siguientes Endpoints :
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**PRODUCTOS**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+* GET **http://localhost:8000/api/products**: Obtiene todos los productos almacenados en base de datos.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* GET **http://localhost:8000/api/products/id**: Obtiene el producto almacenado en base de datos que corresponda con el id enviado, si no existe, regresa un 404.
 
-### Premium Partners
+* POST **http://localhost:8000/api/products/**: Crea un producto con el siguiente body; debe existir una moneda registrada, de lo contrario regresa un error
+```
+{
+    "name": "Arroz",
+    "description": "Arroz blanco",
+    "price": 28,
+    "tax_cost": 10,
+    "manufacturing_cost": 30,
+    "currency_id": 1
+}
+```
+* PUT **http://localhost:8000/api/products/id**: Modifica el producto almacenado en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```
+{
+    "name": "Arroz",
+    "description": "Arroz Moreno",
+    "price": 30,
+    "tax_cost": 50,
+    "manufacturing_cost": 30,
+    "currency_id": 1
+}
+```
+* DELETE **http://localhost:8000/api/prodcuts/id**: Elimina el saludo almacenado en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* GET **http://localhost:8000/api/products/id/prices**: Obtiene la lista de los precios que ha tenido un producto.
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* POST **http://localhost:8000/api/products/id/prices**: Crea un nuevo precio para el producto solicitado con el siguiente body; debe existir el producto y la moneda ya registrados, de lo contrario regresa un error
+```
+{
+    "id": 2,
+    "price": 40,
+    "currency_id": 1
+}
+```
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**MONEDAS**
 
-## License
+* GET **http://localhost:8000/api/currency**: Obtiene todas las monedas almacenadas en base de datos.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* GET **http://localhost:8000/api/currency/id**: Obtiene la moneda almacenada en base de datos que corresponda con el id enviado, si no existe, regresa un 404
+
+* POST **http://localhost:8000/api/currency/**: Crea una moneda con el siguiente body:
+```
+{
+    "name": "Dolar",
+    "symbol": "$",
+    "exchange_rate": 10
+}
+```
+* PUT **http://localhost:8000/api/currency/id**: Modifica la moneda almacenada en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
+
+```
+{
+    "name": "Dolar",
+    "symbol": "$",
+    "exchange_rate": 40
+}
+```
+* DELETE **http://localhost:8000/api/currency/id**: Elimina una moneda almacenada en base de datos que corresponda con el id enviado, si no existe el registro, regresa un 404.
+
+
+** Notas: 
+1. Los atributos "tax_cost" y "manufacturing_cost" son opcionales al crear un producto.
+2. La base de datos está en sqlite y se ha subido a este repositorio, de manera que, el proyecto puede iniciarse sin correr las migraciones.
+3. Se generó un controlador y un modelo para cada entidad
+
+
+## Corriendo la api
+
+```bash
+$ php artisan serve
+
+```
